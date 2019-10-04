@@ -1,0 +1,164 @@
+/**
+*Text genereted by Simple GUI Extension for BlueJ
+*/
+import javax.swing.UIManager.LookAndFeelInfo;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import javax.swing.border.Border;
+import javax.swing.*;
+
+
+
+
+public class GUI_project extends JFrame {
+
+    private JButton jBDiff;
+    private JButton jBAdd;
+    private JButton jBMult;
+    private JTextField jTFErgebnis;
+    private JTextField jTFZahl2;
+    private JLabel label1;
+    private JTextField jTFZahl1;
+    
+    Controller kenntController;
+
+    public GUI_project(Controller pController){
+        
+        kenntController = pController;
+        
+        this.setTitle("GUI_project");
+        this.setSize(500,400);
+        
+        //pane with null layout
+        JPanel contentPane = new JPanel(null);
+        contentPane.setPreferredSize(new Dimension(500,400));
+        contentPane.setBackground(new Color(192,192,192));
+        
+        jBAdd = new JButton();
+        jBAdd.addActionListener(new ActionListener()
+          {
+            public void actionPerformed(ActionEvent e)
+            {
+                int lZahl1 = Integer.parseInt(jTFZahl1.getText());
+                int lZahl2 = Integer.parseInt(jTFZahl2.getText());
+                kenntController.addiere(lZahl1, lZahl2);  
+            }
+          } 
+        );
+        
+        jBMult = new JButton();
+        jBMult.addActionListener(new ActionListener()
+          {
+            public void actionPerformed(ActionEvent e)
+            {
+                int lZahl1 = Integer.parseInt(jTFZahl1.getText());
+                int lZahl2 = Integer.parseInt(jTFZahl2.getText());
+                kenntController.multipliziere(lZahl1, lZahl2);  
+            }
+          } 
+        );
+        
+        jBDiff = new JButton();
+        jBDiff.addActionListener(new ActionListener()
+          {
+            public void actionPerformed(ActionEvent e)
+            {
+                int lZahl1 = Integer.parseInt(jTFZahl1.getText());
+                int lZahl2 = Integer.parseInt(jTFZahl2.getText());
+                kenntController.differenziere(lZahl1, lZahl2);  
+            }
+          } 
+        );
+        
+        jBDiff.setBounds(238,97,90,35);
+        jBDiff.setBackground(new Color(214,217,223));
+        jBDiff.setForeground(new Color(0,0,0));
+        jBDiff.setEnabled(true);
+        jBDiff.setFont(new Font("sansserif",0,12));
+        jBDiff.setText("minus");
+        jBDiff.setVisible(true);
+        jBAdd.setBounds(237,45,90,35);
+        jBAdd.setBackground(new Color(214,217,223));
+        jBAdd.setForeground(new Color(0,0,0));
+        jBAdd.setEnabled(true);
+        jBAdd.setFont(new Font("sansserif",0,12));
+        jBAdd.setText("plus");
+        jBAdd.setVisible(true);
+        jBMult.setBounds(238,153,90,35);
+        jBMult.setBackground(new Color(214,217,223));
+        jBMult.setForeground(new Color(0,0,0));
+        jBMult.setEnabled(true);
+        jBMult.setFont(new Font("sansserif",0,12));
+        jBMult.setText("mal");
+        jBMult.setVisible(true);
+                     
+       
+
+        jTFErgebnis = new JTextField();
+        jTFErgebnis.setBounds(366,93,90,35);
+        jTFErgebnis.setBackground(new Color(255,255,255));
+        jTFErgebnis.setForeground(new Color(0,0,0));
+        jTFErgebnis.setEnabled(true);
+        jTFErgebnis.setFont(new Font("sansserif",0,12));
+        jTFErgebnis.setText("Ergebnis");
+        jTFErgebnis.setVisible(true);
+
+        jTFZahl2 = new JTextField();
+        jTFZahl2.setBounds(123,90,90,35);
+        jTFZahl2.setBackground(new Color(255,255,255));
+        jTFZahl2.setForeground(new Color(0,0,0));
+        jTFZahl2.setEnabled(true);
+        jTFZahl2.setFont(new Font("sansserif",0,12));
+        jTFZahl2.setText("Zahl eingeben");
+        jTFZahl2.setVisible(true);
+
+        label1 = new JLabel();
+        label1.setBounds(103,5,2000,35);
+        label1.setBackground(new Color(214,217,223));
+        label1.setForeground(new Color(0,0,0));
+        label1.setEnabled(false);
+        label1.setFont(new Font("sansserif",0,12));
+        label1.setText("Mein Taschenrechner");
+        label1.setVisible(true);
+
+        jTFZahl1 = new JTextField();
+        jTFZahl1.setBounds(21,90,90,35);
+        jTFZahl1.setBackground(new Color(255,255,255));
+        jTFZahl1.setForeground(new Color(0,0,0));
+        jTFZahl1.setEnabled(true);
+        jTFZahl1.setFont(new Font("sansserif",0,12));
+        jTFZahl1.setText("Zahl eingeben");
+        jTFZahl1.setVisible(true);
+
+        //adding components to contentPane panel
+        contentPane.add(jBDiff);
+        contentPane.add(jBAdd);
+        contentPane.add(jBMult);
+        contentPane.add(jTFErgebnis);
+        contentPane.add(jTFZahl2);
+        contentPane.add(label1);
+        contentPane.add(jTFZahl1);
+
+        //adding panel to JFrame and seting of window position and close operation
+        this.add(contentPane);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.pack();
+        this.setVisible(true);
+        
+        
+        
+    }
+    
+    protected void printText(String lErgebnis)
+    {
+        jTFErgebnis.setText(lErgebnis);
+    }
+}
